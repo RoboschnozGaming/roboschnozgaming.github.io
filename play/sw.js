@@ -1,4 +1,4 @@
-const CACHE = 'reactor-defense-v177';
+const CACHE = 'reactor-defense-v194';
 const ASSETS = ['./', './index.html', './manifest.webmanifest',
   './icon-180.png', './icon-192.png', './icon-512.png', './icon-512-maskable.png'];
 
