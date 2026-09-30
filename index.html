@@ -130,6 +130,11 @@ h1{
 #bf{display:block;width:100%;height:auto;aspect-ratio:1/1}
 .field-cap{position:absolute;left:12px;bottom:10px;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:#cfe9f5;text-shadow:0 1px 6px #000}
 
+.tabs{display:flex;gap:8px;justify-content:center;margin:14px 0 0;flex-wrap:wrap}
+.tab{font:inherit;font-size:.85rem;font-weight:600;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:7px 16px;cursor:pointer;transition:color .15s,border-color .15s}
+.tab:hover{color:var(--title)}
+.tab.on{color:#041018;background:var(--cyan);border-color:var(--cyan)}
+
 /* stats strip */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:-1px 0 0;padding:26px 0}
 .stat{text-align:center;padding:14px 8px;border:1px solid var(--line);border-radius:14px;background:var(--panel)}
@@ -196,6 +201,17 @@ footer p{margin:6px 0}
       <a class="btn btn-play" href="https://play.google.com/store/apps/details?id=com.roboschnozgaming.reactordefense">Get Reactor Defense on Google Play</a>
       <a class="btn btn-alt" href="https://youtu.be/HCFLW9A1QhE" target="_blank" rel="noopener">Watch the trailer</a>
       <span class="btn btn-ios" title="App Store coming soon">iOS — Coming Soon</span>
+    </div>
+
+    <div class="field">
+      <video id="bf" src="assets/lance-hero.mp4" poster="assets/lance-hero-poster.jpg" width="720" height="720" autoplay muted playsinline preload="auto" aria-label="Reactor Defense gameplay clips showing the game's turrets in action"></video>
+      <span class="field-cap" id="bfcap">Lance · piercing beam</span>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Turret clips">
+      <button type="button" class="tab on" data-i="0">Lance</button>
+      <button type="button" class="tab" data-i="1">Mortar</button>
+      <button type="button" class="tab" data-i="2">Sniper</button>
+      <button type="button" class="tab" data-i="3">Flak</button>
     </div>
 
     <div class="field">
@@ -296,9 +312,28 @@ footer p{margin:6px 0}
     els.forEach(function(el){io.observe(el);});
   }else{els.forEach(function(el){el.classList.add('in');});}
 
-  /* hero video: respect reduced motion */
-  var v=document.getElementById('bf');
-  if(v&&window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches){v.removeAttribute('autoplay');v.pause();v.removeAttribute('loop');}
+  /* hero clips: cycle through turret clips, respect reduced motion */
+  var v=document.getElementById('bf'),cap=document.getElementById('bfcap');
+  if(v){
+    var clips=[
+      ['lance','Lance \u00b7 piercing beam'],
+      ['mortar','Saturation Battery \u00b7 picks its targets'],
+      ['sniper','Sniper \u00b7 kill chain'],
+      ['flak','Flak \u00b7 anti-air storm']
+    ], cur=0, tabs=document.querySelectorAll('.tab');
+    var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function show(i,play){
+      cur=i;
+      v.poster='assets/'+clips[i][0]+'-hero-poster.jpg';
+      v.src='assets/'+clips[i][0]+'-hero.mp4';
+      cap.textContent=clips[i][1];
+      tabs.forEach(function(t,n){t.classList.toggle('on',n===i);});
+      if(play){var p=v.play();if(p&&p.catch)p.catch(function(){});}
+    }
+    v.addEventListener('ended',function(){if(!reduce)show((cur+1)%clips.length,true);});
+    tabs.forEach(function(t){t.addEventListener('click',function(){show(+t.getAttribute('data-i'),true);});});
+    if(reduce){v.removeAttribute('autoplay');v.pause();}
+  }
 })();
 </script>
 </body>
