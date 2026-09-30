@@ -1,0 +1,23 @@
+# Reactor Defense: TD
+
+> Reactor Defense: TD is an offline sci-fi tower defense game for Android, made by Roboschnoz Gaming. Players build and evolve turrets to stop machines from reaching their reactor core. The game is free with limited ads, has a one-time purchase to remove them, and has no pay-to-win.
+
+## Key facts
+
+- Genre: tower defense, strategy
+- Platform: Android (Google Play). An iOS version is coming soon.
+- Price: free with limited ads; a one-time purchase removes ads
+- Internet: not required, the whole game plays offline and needs no account
+- Turrets: 12 base turrets that evolve into stronger forms
+- Progression: Mastery XP carries across runs and unlocks evolutions and upgrades
+- Enemies: an AI that adapts to how the player builds
+- Monetization: limited ads, optional one-time ad removal, no pay-to-win
+- Developer: Roboschnoz Gaming
+
+## Links
+
+- [Official site](https://roboschnozgaming.github.io/): overview, screenshots, FAQ
+- [Google Play listing](https://play.google.com/store/apps/details?id=com.roboschnozgaming.reactordefense): download
+- [Trailer on YouTube](https://youtu.be/HCFLW9A1QhE)
+- [Privacy policy](https://roboschnozgaming.github.io/privacy.html)
+- [Support](https://roboschnozgaming.github.io/support.html)

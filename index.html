@@ -37,6 +37,9 @@
   "applicationCategory": "Game",
   "operatingSystem": "Android",
   "playMode": "SinglePlayer",
+  "featureList": ["12 base turrets that evolve into stronger forms", "Mastery progression that carries across runs", "Enemy AI that adapts to the player's build", "Fully offline play", "No pay-to-win"],
+  "sameAs": ["https://play.google.com/store/apps/details?id=com.roboschnozgaming.reactordefense", "https://youtu.be/HCFLW9A1QhE"],
+  "publisher": { "@type": "Organization", "name": "Roboschnoz Gaming", "url": "https://roboschnozgaming.github.io/" },
   "inLanguage": "en",
   "author": { "@type": "Organization", "name": "Roboschnoz Gaming", "url": "https://roboschnozgaming.github.io/" },
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "url": "https://play.google.com/store/apps/details?id=com.roboschnozgaming.reactordefense" }
@@ -93,12 +96,21 @@ a{color:var(--cyan)}
           mask-image:radial-gradient(ellipse at 50% 35%,#000 20%,transparent 75%);
   animation:drift 18s linear infinite;
 }
+@keyframes shimmer{0%,25%{background-position:100% 0}65%,100%{background-position:0% 0}}
 @keyframes drift{to{background-position:44px 44px}}
 .hero .wrap{position:relative;z-index:1}
+@property --ang{syntax:"<angle>";initial-value:0deg;inherits:false}
+.iw{position:relative;display:inline-block;width:104px;height:104px;border-radius:24px;isolation:isolate}
+.iw::before,.iw::after{content:"";position:absolute;border-radius:30px;z-index:-1;
+  background:conic-gradient(from var(--ang),#4de0ff,#9b6bff,#ff6bd6,#ffb44d,#4de0ff);animation:ring 6s linear infinite}
+.iw::before{inset:-6px;filter:blur(12px);opacity:.75}
+.iw::after{inset:-3px;border-radius:27px}
+@keyframes ring{to{--ang:360deg}}
+.iw .icon{position:relative;display:block;animation:bob 4.5s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-3px) scale(1.03)}}
 .icon{
   width:104px;height:104px;border-radius:24px;border:1px solid var(--line);
   box-shadow:0 0 0 6px rgba(77,224,255,.06),0 0 44px rgba(77,224,255,.35);
-  animation:pulse 3.2s ease-in-out infinite;
 }
 @keyframes pulse{
   0%,100%{box-shadow:0 0 0 6px rgba(77,224,255,.06),0 0 36px rgba(77,224,255,.28)}
@@ -109,8 +121,10 @@ h1{
   margin:20px 0 6px;font-family:"Anton","Impact","Arial Narrow",system-ui,sans-serif;font-weight:400;text-transform:uppercase;
   font-size:clamp(2rem,9.2vw,5.2rem);line-height:1;letter-spacing:.03em;text-wrap:balance;
   filter:drop-shadow(0 0 22px rgba(77,224,255,.35));
-  background:linear-gradient(90deg,#e8f6ff 20%,var(--cyan) 60%,var(--purple));
+  background:linear-gradient(105deg,#e8f6ff 0%,#4de0ff 28%,#ffffff 42%,#4de0ff 56%,#9b6bff 100%);
+  background-size:260% 100%;background-position:100% 0;
   -webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:shimmer 5.5s ease-in-out infinite;
 }
 .tag{
   color:var(--cyan);font-size:.95rem;letter-spacing:.3em;text-transform:uppercase;margin:0 0 16px;
@@ -178,6 +192,10 @@ h2{color:var(--title);font-size:1.5rem;margin:0 0 6px}
 .cta{text-align:center}
 .cta .feature{margin:0 auto 18px;max-width:100%}
 
+.facts{margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px}
+.facts div{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+.facts dt{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 2px}
+.facts dd{margin:0;color:var(--title)}
 /* FAQ */
 details{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:0;margin:10px 0}
 summary{cursor:pointer;list-style:none;padding:14px 18px;color:var(--title);font-weight:600;position:relative}
@@ -196,7 +214,7 @@ footer p{margin:6px 0}
 .rv{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
 .rv.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){
-  *,*::before{animation:none!important;transition:none!important}
+  *,*::before,*::after{animation:none!important;transition:none!important}
   .rv{opacity:1;transform:none}
   html{scroll-behavior:auto}
 }
@@ -206,7 +224,7 @@ footer p{margin:6px 0}
 
 <header class="hero">
   <div class="wrap">
-    <img class="icon" src="assets/app-icon-512.png" alt="Reactor Defense: TD app icon" width="104" height="104">
+    <span class="iw"><img class="icon" src="assets/app-icon-512.png" alt="Reactor Defense: TD app icon" width="104" height="104"></span>
     <h1>Reactor Defense: TD</h1>
     <p class="tag">Master · Evolve · Adapt</p>
     <p class="pitch">Offline sci-fi tower defense for Android. Grow Mastery across runs, evolve 12 turrets, and outthink an AI that adapts to your build.</p>
@@ -252,6 +270,21 @@ footer p{margin:6px 0}
   </section>
 
   <section class="rv">
+    <h2>Quick facts</h2>
+    <dl class="facts">
+      <div><dt>Game</dt><dd>Reactor Defense: TD</dd></div>
+      <div><dt>Genre</dt><dd>Tower defense, strategy</dd></div>
+      <div><dt>Platform</dt><dd>Android (Google Play). iOS coming soon.</dd></div>
+      <div><dt>Price</dt><dd>Free with limited ads. A one-time purchase removes them.</dd></div>
+      <div><dt>Internet</dt><dd>Not required. The whole game plays offline.</dd></div>
+      <div><dt>Turrets</dt><dd>12 base turrets that evolve into stronger forms</dd></div>
+      <div><dt>Progression</dt><dd>Mastery XP carries across every run</dd></div>
+      <div><dt>Monetization</dt><dd>No pay-to-win</dd></div>
+      <div><dt>Developer</dt><dd>Roboschnoz Gaming</dd></div>
+    </dl>
+  </section>
+
+  <section class="rv">
     <h2>Why it sticks</h2>
     <p class="sub">Four ideas that keep every run different.</p>
     <div class="cards">
@@ -283,8 +316,8 @@ footer p{margin:6px 0}
         <figcaption>Late waves get loud.</figcaption>
       </figure>
       <figure>
-        <img src="assets/shot-upgrade.jpg" alt="Reactor Defense: TD turret inspect panel showing level, damage, kills and upgrade options" width="600" height="1304" loading="lazy">
-        <figcaption>Inspect, upgrade and evolve any turret.</figcaption>
+        <img src="assets/shot-upgrade.jpg" alt="Reactor Defense: TD turret inspect panel showing level, damage, kill stats and upgrade options" width="600" height="1304" loading="lazy">
+        <figcaption>Inspect, upgrade and evolve any turret, and see its damage and kill stats.</figcaption>
       </figure>
       <figure>
         <img src="assets/shot-mastery.jpg" alt="Reactor Defense: TD Mastery screen with permanent upgrades that carry across runs" width="600" height="1304" loading="lazy">
