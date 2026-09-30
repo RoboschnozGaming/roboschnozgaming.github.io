@@ -126,9 +126,9 @@ h1{
 .btn-ios:hover{transform:none}
 
 /* battlefield canvas */
-.field{position:relative;max-width:860px;margin:30px auto 0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#060a0f;box-shadow:0 20px 60px rgba(0,0,0,.5)}
-#bf{display:block;width:100%;height:auto;aspect-ratio:860/250}
-.field-cap{position:absolute;left:12px;bottom:8px;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.field{position:relative;max-width:560px;margin:30px auto 0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#060a0f;box-shadow:0 0 0 1px rgba(77,224,255,.08),0 20px 60px rgba(0,0,0,.55),0 0 50px rgba(155,107,255,.18)}
+#bf{display:block;width:100%;height:auto;aspect-ratio:1/1}
+.field-cap{position:absolute;left:12px;bottom:10px;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:#cfe9f5;text-shadow:0 1px 6px #000}
 
 /* stats strip */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:-1px 0 0;padding:26px 0}
@@ -198,9 +198,9 @@ footer p{margin:6px 0}
       <span class="btn btn-ios" title="App Store coming soon">iOS — Coming Soon</span>
     </div>
 
-    <div class="field" aria-hidden="true">
-      <canvas id="bf" width="860" height="250"></canvas>
-      <span class="field-cap">Live feed · Sector 7</span>
+    <div class="field">
+      <video id="bf" src="assets/lance-hero.mp4" poster="assets/lance-hero-poster.jpg" width="720" height="720" autoplay muted loop playsinline preload="auto" aria-label="Reactor Defense gameplay: a Lance turret burning a column of machines with a piercing beam"></video>
+      <span class="field-cap">Lance turret · piercing beam</span>
     </div>
   </div>
 </header>
@@ -296,51 +296,9 @@ footer p{margin:6px 0}
     els.forEach(function(el){io.observe(el);});
   }else{els.forEach(function(el){el.classList.add('in');});}
 
-  /* battlefield animation */
-  var c=document.getElementById('bf'); if(!c||!c.getContext) return;
-  var x=c.getContext('2d'), W=c.width, H=c.height;
-  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var P=[[-20,60],[220,60],[220,170],[470,170],[470,70],[700,70],[700,150],[790,150]];
-  var seg=[],tot=0,i;
-  for(i=0;i<P.length-1;i++){var d=Math.hypot(P[i+1][0]-P[i][0],P[i+1][1]-P[i][1]);seg.push(d);tot+=d;}
-  function at(t){var d=t*tot;for(var k=0;k<seg.length;k++){if(d<=seg[k]){var f=d/seg[k];return[P[k][0]+(P[k+1][0]-P[k][0])*f,P[k][1]+(P[k+1][1]-P[k][1])*f];}d-=seg[k];}return P[P.length-1];}
-  var T=[[120,120,'#4de0ff'],[340,105,'#9b6bff'],[570,120,'#4de0ff'],[620,20,'#9b6bff'],[760,100,'#4de0ff']];
-  var E=[],shots=[],last=0,spawn=0,core=0;
-  function frame(ts){
-    var dt=Math.min(.05,(ts-last)/1000||0);last=ts;core+=dt;
-    x.clearRect(0,0,W,H);
-    /* pipeline */
-    x.lineJoin='round';x.lineCap='round';
-    x.strokeStyle='#14222e';x.lineWidth=26;x.beginPath();P.forEach(function(p,n){n?x.lineTo(p[0],p[1]):x.moveTo(p[0],p[1]);});x.stroke();
-    x.strokeStyle='#1e2e3c';x.lineWidth=2;x.setLineDash([8,10]);x.stroke();x.setLineDash([]);
-    /* core */
-    var r=16+Math.sin(core*3)*2.5,g=x.createRadialGradient(800,150,2,800,150,r*2.6);
-    g.addColorStop(0,'rgba(191,246,255,1)');g.addColorStop(.35,'rgba(77,224,255,.85)');g.addColorStop(1,'rgba(77,224,255,0)');
-    x.fillStyle=g;x.beginPath();x.arc(800,150,r*2.6,0,7);x.fill();
-    /* spawn + move enemies */
-    spawn-=dt;if(spawn<=0){E.push({t:0,hp:3,s:.055+Math.random()*.03});spawn=.9+Math.random()*.8;}
-    E.forEach(function(e){e.t+=e.s*dt;});
-    E=E.filter(function(e){return e.t<.985&&e.hp>0;});
-    /* turrets */
-    T.forEach(function(u){
-      u.cd=(u.cd||0)-dt;
-      var best=null,bd=1e9;
-      E.forEach(function(e){var p=at(e.t),d=Math.hypot(p[0]-u[0],p[1]-u[1]);if(d<150&&d<bd){bd=d;best=e;}});
-      u.a=best?Math.atan2(at(best.t)[1]-u[1],at(best.t)[0]-u[0]):(u.a||0);
-      if(best&&u.cd<=0){u.cd=.55;best.hp--;shots.push({x1:u[0],y1:u[1],p:at(best.t),c:u[2],l:.12});}
-      x.fillStyle='#0e1620';x.strokeStyle=u[2];x.lineWidth=1.5;
-      x.beginPath();x.arc(u[0],u[1],11,0,7);x.fill();x.stroke();
-      x.beginPath();x.moveTo(u[0],u[1]);x.lineTo(u[0]+Math.cos(u.a)*16,u[1]+Math.sin(u.a)*16);x.lineWidth=3;x.stroke();
-    });
-    /* shots */
-    shots=shots.filter(function(s){return(s.l-=dt)>0;});
-    shots.forEach(function(s){x.strokeStyle=s.c;x.globalAlpha=Math.min(1,s.l*8);x.lineWidth=2;x.beginPath();x.moveTo(s.x1,s.y1);x.lineTo(s.p[0],s.p[1]);x.stroke();x.globalAlpha=1;});
-    /* enemies */
-    E.forEach(function(e){var p=at(e.t);x.fillStyle='#ff6b6b';x.shadowColor='#ff6b6b';x.shadowBlur=10;x.beginPath();x.arc(p[0],p[1],6,0,7);x.fill();x.shadowBlur=0;});
-    if(!reduce) requestAnimationFrame(frame);
-  }
-  if(reduce){ for(var n=0;n<40;n++){E.push({t:Math.random()*.9,hp:3,s:.05});} frame(1000); }
-  else requestAnimationFrame(frame);
+  /* hero video: respect reduced motion */
+  var v=document.getElementById('bf');
+  if(v&&window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches){v.removeAttribute('autoplay');v.pause();v.removeAttribute('loop');}
 })();
 </script>
 </body>
