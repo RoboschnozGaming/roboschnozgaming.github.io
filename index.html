@@ -3,170 +3,213 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Reactor Defense: TD — Roboschnoz Gaming</title>
-<meta name="description" content="Offline sci-fi tower defense. Mastery across runs, 12 turrets that evolve, AI that adapts to your build. Limited ads + one-time remove. No pay-to-win.">
-<meta property="og:title" content="Reactor Defense: TD">
-<meta property="og:description" content="Master · Evolve · Adapt. Offline tower defense by Roboschnoz Gaming.">
-<meta property="og:image" content="assets/feature-graphic-1024x500.jpg">
+<title>Reactor Defense: TD — Offline Sci-Fi Tower Defense | Roboschnoz Gaming</title>
+<meta name="description" content="Reactor Defense: TD is an offline sci-fi tower defense game for Android. Evolve 12 turrets, grow Mastery across runs, and outthink an AI that adapts to your build. No pay-to-win.">
+<link rel="canonical" href="https://roboschnozgaming.github.io/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="theme-color" content="#070b10">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Roboschnoz Gaming">
+<meta property="og:url" content="https://roboschnozgaming.github.io/">
+<meta property="og:title" content="Reactor Defense: TD — Offline Sci-Fi Tower Defense">
+<meta property="og:description" content="Master · Evolve · Adapt. Offline tower defense with 12 evolving turrets and an AI that counters your build. No pay-to-win.">
+<meta property="og:image" content="https://roboschnozgaming.github.io/assets/feature-graphic-1024x500.jpg">
+<meta property="og:image:width" content="1024">
+<meta property="og:image:height" content="500">
+<meta property="og:image:alt" content="Reactor Defense: TD — turrets defending the reactor core">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Reactor Defense: TD — Offline Sci-Fi Tower Defense">
+<meta name="twitter:description" content="12 evolving turrets. An AI that adapts to your build. Fully offline, no pay-to-win.">
+<meta name="twitter:image" content="https://roboschnozgaming.github.io/assets/feature-graphic-1024x500.jpg">
 <link rel="icon" type="image/png" href="assets/app-icon-512.png">
+<link rel="apple-touch-icon" href="assets/app-icon-512.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoGame",
+  "name": "Reactor Defense: TD",
+  "description": "Offline sci-fi tower defense. Grow Mastery across runs, evolve 12 turrets, and outthink an AI that adapts to your build.",
+  "url": "https://roboschnozgaming.github.io/",
+  "image": "https://roboschnozgaming.github.io/assets/feature-graphic-1024x500.jpg",
+  "genre": ["Tower defense", "Strategy"],
+  "gamePlatform": "Android",
+  "applicationCategory": "Game",
+  "operatingSystem": "Android",
+  "playMode": "SinglePlayer",
+  "inLanguage": "en",
+  "author": { "@type": "Organization", "name": "Roboschnoz Gaming", "url": "https://roboschnozgaming.github.io/" },
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "url": "https://play.google.com/store/apps/details?id=com.roboschnozgaming.reactordefense" }
+}
+</script>
 <style>
-  :root {
-    --bg: #070b10;
-    --panel: #0e1620;
-    --line: #1e2e3c;
-    --text: #b8c9d6;
-    --title: #e8f6ff;
-    --cyan: #4de0ff;
-    --purple: #9b6bff;
-    --muted: #7a8fa3;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  }
-  .wrap { max-width: 720px; margin: 0 auto; padding: 40px 20px 64px; }
-  .hero {
-    text-align: center;
-    padding: 28px 0 8px;
-  }
-  .icon {
-    width: 96px; height: 96px;
-    border-radius: 22px;
-    border: 1px solid var(--line);
-    box-shadow: 0 0 28px rgba(77,224,255,.18);
-  }
-  h1 {
-    margin: 18px 0 6px;
-    color: var(--title);
-    font-size: 1.85rem;
-    letter-spacing: .02em;
-  }
-  .tag {
-    color: var(--cyan);
-    font-size: .95rem;
-    letter-spacing: .18em;
-    text-transform: uppercase;
-    margin: 0 0 14px;
-  }
-  .pitch { margin: 0 auto 22px; max-width: 34em; color: var(--text); }
-  .feature {
-    width: 100%;
-    max-width: 640px;
-    border-radius: 12px;
-    border: 1px solid var(--line);
-    display: block;
-    margin: 0 auto 24px;
-  }
-  .btns {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    margin: 0 0 28px;
-  }
-  .btn {
-    display: inline-block;
-    padding: 12px 18px;
-    border-radius: 10px;
-    text-decoration: none;
-    font-weight: 600;
-    border: 1px solid transparent;
-  }
-  .btn-play {
-    background: linear-gradient(135deg, #1a8fb5, #4de0ff);
-    color: #041018;
-  }
-  .btn-yt {
-    background: var(--panel);
-    color: var(--title);
-    border-color: var(--line);
-  }
-  .btn-ios {
-    background: transparent;
-    color: var(--muted);
-    border-color: var(--line);
-    cursor: default;
-  }
-  .card {
-    background: var(--panel);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    padding: 18px 20px;
-    margin: 14px 0;
-  }
-  .card h2 {
-    margin: 0 0 10px;
-    color: var(--title);
-    font-size: 1.05rem;
-  }
-  .card ul { margin: 0; padding-left: 1.15em; }
-  .card li { margin: 6px 0; }
-  .grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin: 14px 0 8px;
-  }
-  @media (max-width: 520px) { .grid { grid-template-columns: 1fr; } }
-  .grid img {
-    width: 100%;
-    border-radius: 10px;
-    border: 1px solid var(--line);
-    display: block;
-  }
-  .mono { color: var(--muted); font-size: .92rem; }
-  footer {
-    margin-top: 28px;
-    text-align: center;
-    color: var(--muted);
-    font-size: .9rem;
-  }
-  footer a { color: var(--cyan); }
+:root {
+--bg: #070b10;
+--panel: #0e1620;
+--line: #1e2e3c;
+--text: #b8c9d6;
+--title: #e8f6ff;
+--cyan: #4de0ff;
+--purple: #9b6bff;
+--muted: #7a8fa3;
+}
+* { box-sizing: border-box; }
+body {
+margin: 0;
+background: var(--bg);
+color: var(--text);
+font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+.wrap { max-width: 720px; margin: 0 auto; padding: 40px 20px 64px; }
+.hero {
+text-align: center;
+padding: 28px 0 8px;
+}
+.icon {
+width: 96px; height: 96px;
+border-radius: 22px;
+border: 1px solid var(--line);
+box-shadow: 0 0 28px rgba(77,224,255,.18);
+}
+h1 {
+margin: 18px 0 6px;
+color: var(--title);
+font-size: 1.85rem;
+letter-spacing: .02em;
+}
+.tag {
+color: var(--cyan);
+font-size: .95rem;
+letter-spacing: .18em;
+text-transform: uppercase;
+margin: 0 0 14px;
+}
+.pitch { margin: 0 auto 22px; max-width: 34em; color: var(--text); }
+.feature {
+width: 100%;
+max-width: 640px;
+border-radius: 12px;
+border: 1px solid var(--line);
+display: block;
+margin: 0 auto 24px;
+}
+.btns {
+display: flex;
+flex-wrap: wrap;
+gap: 10px;
+justify-content: center;
+margin: 0 0 28px;
+}
+.btn {
+display: inline-block;
+padding: 12px 18px;
+border-radius: 10px;
+text-decoration: none;
+font-weight: 600;
+border: 1px solid transparent;
+}
+.btn-play {
+background: linear-gradient(135deg, #1a8fb5, #4de0ff);
+color: #041018;
+}
+.btn-yt {
+background: var(--panel);
+color: var(--title);
+border-color: var(--line);
+}
+.btn-ios {
+background: transparent;
+color: var(--muted);
+border-color: var(--line);
+cursor: default;
+}
+.card {
+background: var(--panel);
+border: 1px solid var(--line);
+border-radius: 14px;
+padding: 18px 20px;
+margin: 14px 0;
+}
+.card h2 {
+margin: 0 0 10px;
+color: var(--title);
+font-size: 1.05rem;
+}
+.card p { margin: 0 0 10px; }
+.card p:last-child { margin-bottom: 0; }
+.card ul { margin: 0; padding-left: 1.15em; }
+.card li { margin: 6px 0; }
+.grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 10px;
+margin: 14px 0 8px;
+}
+@media (max-width: 520px) { .grid { grid-template-columns: 1fr; } }
+.grid img {
+width: 100%;
+border-radius: 10px;
+border: 1px solid var(--line);
+display: block;
+}
+.mono { color: var(--muted); font-size: .92rem; }
+footer {
+margin-top: 28px;
+text-align: center;
+color: var(--muted);
+font-size: .9rem;
+}
+footer a { color: var(--cyan); }
 </style>
 </head>
 <body>
-  <div class="wrap">
-    <header class="hero">
-      <img class="icon" src="assets/app-icon-512.png" alt="Reactor Defense icon">
-      <h1>Reactor Defense: TD</h1>
-      <p class="tag">Master · Evolve · Adapt</p>
-      <p class="pitch">Offline sci-fi tower defense. Grow Mastery across runs, evolve 12 turrets, and outthink an AI that adapts to your build.</p>
-      <img class="feature" src="assets/feature-graphic-1024x500.jpg" alt="Reactor Defense feature graphic">
-      <div class="btns">
-        <a class="btn btn-play" href="https://play.google.com/store/apps/details?id=com.roboschnozgaming.reactordefense">Get it on Google Play</a>
-        <a class="btn btn-yt" href="https://youtu.be/HCFLW9A1QhE" target="_blank" rel="noopener">Watch trailer</a>
-        <span class="btn btn-ios" title="App Store coming soon">iOS — Coming Soon</span>
-      </div>
-    </header>
+<div class="wrap">
+<header class="hero">
+<img class="icon" src="assets/app-icon-512.png" alt="Reactor Defense: TD app icon" width="96" height="96">
+<h1>Reactor Defense: TD</h1>
+<p class="tag">Master · Evolve · Adapt</p>
+<p class="pitch">Offline sci-fi tower defense for Android. Grow Mastery across runs, evolve 12 turrets, and outthink an AI that adapts to your build.</p>
+<img class="feature" src="assets/feature-graphic-1024x500.jpg" alt="Reactor Defense: TD feature art — turrets defending a reactor core" width="1024" height="500">
+<div class="btns">
+<a class="btn btn-play" href="https://play.google.com/store/apps/details?id=com.roboschnozgaming.reactordefense">Get Reactor Defense on Google Play</a>
+<a class="btn btn-yt" href="play/">Play free in your browser</a>
+<a class="btn btn-yt" href="https://youtu.be/HCFLW9A1QhE" target="_blank" rel="noopener">Watch the trailer</a>
+<span class="btn btn-ios" title="App Store coming soon">iOS — Coming Soon</span>
+</div>
+</header>
 
-    <section class="card">
-      <h2>Why it sticks</h2>
-      <ul>
-        <li><b>Mastery</b> — long-term progress that carries across runs</li>
-        <li><b>Evolutions</b> — 12 base turrets that evolve into stronger forms</li>
-        <li><b>Adaptive AI</b> — enemies counter how you build</li>
-        <li><b>Fully offline</b> — play anywhere, no always-online gate</li>
-      </ul>
-    </section>
+<main>
+<section class="card">
+<h2>About the game</h2>
+<p>Machines crawl a pipeline toward your reactor core, and every one that gets through costs core integrity. Place turrets on the open panels, upgrade them, and evolve them into stronger forms to stop each wave before it breaks through.</p>
+<p>Reactor Defense: TD is a tower defense game built around long-term progression. Mastery XP carries across runs and unlocks new evolutions, while the enemy AI reads how you build and counters it. The whole game plays offline, with no account and no connection required.</p>
+</section>
 
-    <div class="grid">
-      <img src="assets/gameplay-wave7-cryo.jpg" alt="Gameplay — late wave board">
-      <img src="assets/hero-reactor-turrets-topdown.png" alt="Turrets defending the reactor">
-    </div>
+<section class="card">
+<h2>Why it sticks</h2>
+<ul>
+<li><b>Mastery</b> — long-term progress that carries across runs</li>
+<li><b>Evolutions</b> — 12 base turrets that evolve into stronger forms</li>
+<li><b>Adaptive AI</b> — enemies counter how you build</li>
+<li><b>Fully offline</b> — play anywhere, no always-online gate</li>
+</ul>
+</section>
 
-    <section class="card">
-      <h2>Fair monetization</h2>
-      <p class="mono" style="margin:0">Plays fully offline. Limited ads with a one-time option to remove them. No pay-to-win.</p>
-    </section>
+<div class="grid">
+<img src="assets/gameplay-wave7-cryo.jpg" alt="Reactor Defense: TD gameplay — late wave board with cryo turrets" loading="lazy">
+<img src="assets/hero-reactor-turrets-topdown.png" alt="Top-down view of turrets defending the reactor" loading="lazy">
+</div>
 
-    <footer>
-      <p>Roboschnoz Gaming · <a href="mailto:roboschozgaming@gmail.com">roboschozgaming@gmail.com</a></p>
-      <p><a href="https://youtu.be/HCFLW9A1QhE">Trailer</a> · <a href="https://play.google.com/store/apps/details?id=com.roboschnozgaming.reactordefense">Android</a> · iOS Coming Soon</p>
-      <p><a href="privacy.html">Privacy</a> · <a href="support.html">Support</a></p>
-    </footer>
-  </div>
+<section class="card">
+<h2>Fair monetization</h2>
+<p class="mono">Plays fully offline. Limited ads with a one-time option to remove them. No pay-to-win.</p>
+</section>
+</main>
+
+<footer>
+<p>Roboschnoz Gaming · <a href="mailto:roboschozgaming@gmail.com">roboschozgaming@gmail.com</a></p>
+<p><a href="https://youtu.be/HCFLW9A1QhE">Trailer</a> · <a href="https://play.google.com/store/apps/details?id=com.roboschnozgaming.reactordefense">Android</a> · <a href="play/">Play in browser</a> · iOS Coming Soon</p>
+<p><a href="privacy.html">Privacy</a> · <a href="support.html">Support</a></p>
+</footer>
+</div>
 </body>
 </html>
