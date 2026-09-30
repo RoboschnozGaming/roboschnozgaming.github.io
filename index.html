@@ -21,6 +21,7 @@
 <meta name="twitter:title" content="Reactor Defense: TD — Offline Sci-Fi Tower Defense">
 <meta name="twitter:description" content="12 evolving turrets. An AI that adapts to your build. Fully offline, no pay-to-win.">
 <meta name="twitter:image" content="https://roboschnozgaming.github.io/assets/feature-graphic-1024x500.jpg">
+<link rel="preload" href="assets/anton-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" type="image/png" href="assets/app-icon-512.png">
 <link rel="apple-touch-icon" href="assets/app-icon-512.png">
 <script type="application/ld+json">
@@ -103,8 +104,11 @@ a{color:var(--cyan)}
   0%,100%{box-shadow:0 0 0 6px rgba(77,224,255,.06),0 0 36px rgba(77,224,255,.28)}
   50%{box-shadow:0 0 0 12px rgba(77,224,255,.04),0 0 64px rgba(77,224,255,.55)}
 }
+@font-face{font-family:"Anton";font-style:normal;font-weight:400;font-display:swap;src:url("assets/anton-latin-400-normal.woff2") format("woff2")}
 h1{
-  margin:20px 0 6px;font-size:clamp(2.1rem,6vw,3.6rem);line-height:1.05;letter-spacing:-.01em;
+  margin:20px 0 6px;font-family:"Anton","Impact","Arial Narrow",system-ui,sans-serif;font-weight:400;text-transform:uppercase;
+  font-size:clamp(2rem,9.2vw,5.2rem);line-height:1;letter-spacing:.03em;text-wrap:balance;
+  filter:drop-shadow(0 0 22px rgba(77,224,255,.35));
   background:linear-gradient(90deg,#e8f6ff 20%,var(--cyan) 60%,var(--purple));
   -webkit-background-clip:text;background-clip:text;color:transparent;
 }
