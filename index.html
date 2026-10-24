@@ -422,8 +422,8 @@ footer p{margin:6px 0}
     var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
     function show(i,play){
       cur=i;
-      v.poster='assets/'+clips[i][0]+'-hero-poster.jpg';
-      v.src='assets/'+clips[i][0]+'-hero.mp4';
+      v.poster='assets/'+clips[i][0]+'-hero-poster.jpg?v=20261023';
+      v.src='assets/'+clips[i][0]+'-hero.mp4?v=20261023';
       cap.textContent=clips[i][1];
       tabs.forEach(function(t,n){t.classList.toggle('on',n===i);});
       if(play){var p=v.play();if(p&&p.catch)p.catch(function(){});}
